@@ -5,9 +5,15 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
+  StatusBar,
+  LayoutAnimation,
 } from "react-native";
 import * as firebase from "firebase";
 export default class LoginScreen extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
   state = {
     email: "",
     password: "",
@@ -23,8 +29,26 @@ export default class LoginScreen extends React.Component {
       .catch((error) => this.setState({ errorMessage: error.message }));
   };
   render() {
+    LayoutAnimation.easeInEaseOut();
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content"></StatusBar>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Image
+            source={require("../assets/red.png")}
+            style={styles.authHeader}
+          ></Image>
+        </View>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Image
+            source={require("../assets/red.png")}
+            style={styles.authFooter}
+          ></Image>
+        </View>
+        <Image
+          source={require("../assets/icon.png")}
+          style={{ top: -95, alignSelf: "center" }}
+        ></Image>
         <Text style={styles.greeting}>{`Hello again.\nWelcome back.`}</Text>
         <View style={styles.errorMessage}>
           {this.state.errorMessage && (
@@ -42,16 +66,14 @@ export default class LoginScreen extends React.Component {
             ></TextInput>
           </View>
 
-          <View style={{ marginTop: 32 }}>
-            <Text style={styles.inputTitle}>Password</Text>
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              autoCapitalize="none"
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.password}
-            ></TextInput>
-          </View>
+          <Text style={styles.inputTitle2}>Password</Text>
+          <TextInput
+            style={styles.input}
+            secureTextEntry
+            autoCapitalize="none"
+            onChangeText={(password) => this.setState({ password })}
+            value={this.state.password}
+          ></TextInput>
         </View>
 
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
@@ -77,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting: {
-    marginTop: 32,
+    marginTop: -32,
     fontSize: 18,
     fontWeight: "400",
     textAlign: "center",
@@ -103,6 +125,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textTransform: "uppercase",
   },
+  inputTitle2: {
+    marginTop: 31,
+    color: "#8A8F9E",
+    fontSize: 10,
+    textTransform: "uppercase",
+  },
   input: {
     borderBottomColor: "#8A8F9E",
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -112,10 +140,23 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 30,
-    backgroundColor: "#E9446A",
+    backgroundColor: "red",
     borderRadius: 4,
     height: 52,
     alignItems: "center",
     justifyContent: "center",
+  },
+  authHeader: {
+    marginTop: 5,
+    height: 125,
+    width: 125,
+    display: "flex",
+  },
+  authFooter: {
+    position: "absolute",
+    bottom: -630,
+    right: 145,
+    height: 125,
+    width: 125,
   },
 });
