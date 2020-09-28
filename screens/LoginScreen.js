@@ -12,7 +12,7 @@ import {
 import * as firebase from "firebase";
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    headerShown: false,
   };
   state = {
     email: "",
@@ -85,7 +85,7 @@ export default class LoginScreen extends React.Component {
             style={{ color: "#414959", fontSize: 13 }}
             onPress={() => this.props.navigation.navigate("Register")}
           >
-            New to SocialApp?{" "}
+            New to OnFleek?{" "}
             <Text style={{ fontWeight: "500", color: "#E9446A" }}>Sign Up</Text>
           </Text>
         </TouchableOpacity>
