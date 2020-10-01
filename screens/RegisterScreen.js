@@ -22,7 +22,7 @@ export default class RegisterScreen extends React.Component {
       name: "",
       email: "",
       password: "",
-      avatar: null,
+      avatar: undefined,
     },
 
     errorMessage: null,

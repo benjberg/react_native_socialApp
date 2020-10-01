@@ -57,7 +57,7 @@ class Fire {
     try {
       await firebase
         .auth()
-        .createUserWithEmailAndPassword(user.eamil, user.password);
+        .createUserWithEmailAndPassword(user.email, user.password);
 
       let db = this.firestore.collection("users").doc(this.uid);
 
@@ -74,8 +74,12 @@ class Fire {
         db.set({ avatar: remoteUri }, { merge: true });
       }
     } catch (error) {
-      alert("Error: ", { error });
+      alert("Error: " + error);
     }
+  };
+
+  signOut = () => {
+    firebase.auth().signOut();
   };
 
   get firestore() {

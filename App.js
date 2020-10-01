@@ -92,7 +92,6 @@ const AppContainer = createStackNavigator(
           incativeTintColor: "#b8bbc4",
           showLabel: false,
         },
-        initialRouteName: "Profile",
       }
     ),
     postModal: {
@@ -105,15 +104,10 @@ const AppContainer = createStackNavigator(
   }
 );
 
-const AuthStack = createStackNavigator(
-  {
-    Login: LoginScreen,
-    Register: RegisterScreen,
-  },
-  {
-    initialRouteName: "Register",
-  }
-);
+const AuthStack = createStackNavigator({
+  Login: LoginScreen,
+  Register: RegisterScreen,
+});
 
 export default createAppContainer(
   createSwitchNavigator(
